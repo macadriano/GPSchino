@@ -72,23 +72,26 @@ def guardarLog(cadena):
     archivo.write(fechaHora + ": " + cadena + "\n")
     archivo.close()
 
-def guardarLogArchivo(cadena,archivo):
-    archivo = open(archivo, "a")
-    fechaHora = getFechaHora()
-    archivo.write(fechaHora + ": " + cadena + "\n")
-    archivo.close()	
+def guardarLogArchivo(cadena, archivo=None):
+    # Always log to the daily log file
+    archivo_path = get_log_filename()
+    with open(archivo_path, "a") as archivo:
+        fechaHora = getFechaHora()
+        archivo.write(fechaHora + ": " + cadena + "\n")	
 	
 def guardarLogPersonal(cadena):
-    archivo = open("logPersonal.txt", "a")
-    fechaHora = getFechaHora()
-    archivo.write(fechaHora + ": " + cadena + "\n")
-    archivo.close()
+    # Always log to the daily log file
+    archivo_path = get_log_filename()
+    with open(archivo_path, "a") as archivo:
+        fechaHora = getFechaHora()
+        archivo.write(fechaHora + ": " + cadena + "\n")
 
 def guardarLogUDP(cadena):
-    archivo = open("logUDP.txt", "a")
-    fechaHora = getFechaHora()
-    archivo.write(fechaHora + ": " + cadena + "\n")
-    archivo.close()
+    # Always log to the daily log file
+    archivo_path = get_log_filename()
+    with open(archivo_path, "a") as archivo:
+        fechaHora = getFechaHora()
+        archivo.write(fechaHora + ": " + cadena + "\n")
 
 def getFechaHora():
     # Obtener componentes individuales de la fecha y hora
